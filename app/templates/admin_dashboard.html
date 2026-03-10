@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TraceX Guard - Admin Dashboard</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; padding: 0; }
+      header { background: #111; color: #fff; padding: 1rem; }
+      main { padding: 1rem; }
+      section { margin-bottom: 1.5rem; }
+      .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+      table { width: 100%; border-collapse: collapse; }
+      th, td { padding: 0.5rem; border: 1px solid #ddd; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>TraceX Guard Admin Dashboard</h1>
+    </header>
+    <main>
+      <section class="grid">
+        <div class="card">
+          <h2>Global Metrics</h2>
+          <p><strong>Users:</strong> {{ user_count }}</p>
+          <p><strong>Devices:</strong> {{ device_count }}</p>
+          <p><strong>Threats:</strong> {{ threat_count }}</p>
+        </div>
+        <div class="card">
+          <h2>Threat Breakdown</h2>
+          <ul>
+            {% for t, c in threat_by_type %}
+            <li>{{ t }}: {{ c }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="/admin/users">View all users</a></li>
+          <li><a href="/admin/devices">View all devices</a></li>
+          <li><a href="/admin/threats">View recent threats</a></li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
