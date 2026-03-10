@@ -9,7 +9,7 @@ from app.models.init_db import create_all_tables
 app = FastAPI(title="TraceX Guard Backend")
 
 # Static + templates
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+import os; if os.path.isdir("app/static"): app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # Register routers
 app.include_router(auth.router)
