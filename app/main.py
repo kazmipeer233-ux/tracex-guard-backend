@@ -9,7 +9,6 @@ from app.models.init_db import create_all_tables
 app = FastAPI(title="TraceX Guard Backend")
 
 # Static + templates
-import os; if os.path.isdir("app/static"): # static disabled for deployment
 
 # Register routers
 app.include_router(auth.router)
