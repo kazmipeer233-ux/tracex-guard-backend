@@ -90,16 +90,15 @@ def scan_device(request: ScanDeviceRequest, current_user=Depends(get_current_use
 
 
 # =========================
-# Security Score
+# Security Score (PUBLIC TEST ENDPOINT)
 # =========================
 
 @router.get("/security-score")
-def get_security_score(current_user=Depends(get_current_user)):
+def get_security_score():
 
     db: Session = SessionLocal()
 
     unresolved = db.query(ThreatEvent).filter(
-        ThreatEvent.user_id == current_user["sub"],
         ThreatEvent.resolved == False
     ).count()
 
