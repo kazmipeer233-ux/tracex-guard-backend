@@ -31,6 +31,10 @@ function Run-Setup {
         return
     }
 
+    # Ensure we run from the backend folder containing this script.
+    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+    Set-Location $scriptDir
+
     Write-Host "Creating virtual environment..."
     python -m venv .venv
 
@@ -48,7 +52,7 @@ function Run-Setup {
     python -m compileall -q app
 
     Write-Host "Starting Uvicorn server (ctrl+c to stop)..."
-    uvicorn app.main:app --reload
+    python -m uvicorn app.main:app --reload
 }
 
 Run-Setup
